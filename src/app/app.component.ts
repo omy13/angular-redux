@@ -1,24 +1,39 @@
 import { Component } from '@angular/core';
+import {Action, Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'redux-app';
 
   cont: number;
 
-  constructor(){
-    this.cont = 10;
+  constructor( private store: Store<AppState>) {
+    this.store.subscribe( state =>{
+      this.cont = state.count;
+    });
   }
 
   add(){
-    this.cont += 1;
+    const action: Action = {
+      type: 'ADD'
+    };
+    this.store.dispatch(action);
   }
 
   remove(){
-    this.cont -= 1;
+    const action: Action = {
+      type: 'REMOVE'
+    };
+    this.store.dispatch(action);
+
   }
+}
+
+interface AppState {
+  count: number;
 }
