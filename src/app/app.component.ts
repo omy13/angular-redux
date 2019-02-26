@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Action, Store} from '@ngrx/store';
+import {AddAction, RemoveAction} from './cont/counter.action';
 
 @Component({
   selector: 'app-root',
@@ -19,16 +20,12 @@ export class AppComponent {
   }
 
   add(){
-    const action: Action = {
-      type: 'ADD'
-    };
+    const action = new AddAction();
     this.store.dispatch(action);
   }
 
   remove(){
-    const action: Action = {
-      type: 'REMOVE'
-    };
+    const action = new RemoveAction();
     this.store.dispatch(action);
 
   }

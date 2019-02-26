@@ -1,10 +1,11 @@
 import {Action} from '@ngrx/store';
+import {ADD, REMOVE} from './counter.action';
 
 export function counterReducer( state: number = 10, action: Action ) {
     switch (action.type) {
-        case 'ADD':
+        case ADD:
             return state +1;
-        case 'REMOVE':
+        case REMOVE:
             return state -1;
         default:
             return state;
